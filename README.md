@@ -25,3 +25,12 @@ server.PostListen("/login", (req, res) => {
 
 server.Start();
 ```
+
+## Todo （主要自己实现，也欢迎PR）
+1. 静态资源请求
+2. 线程安全处理
+3. 常用数据序列化接口(Json / Protobuf / MessagePack)
+4. 常用Header接口
+5. 测试用例
+6. Nuget 发布
+6. UnityPackageManager 发布
