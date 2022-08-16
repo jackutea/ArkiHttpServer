@@ -13,7 +13,9 @@ server.GetListen("/", (req, res) => {
 });
 
 // Also Register Post
-// server.PostListen...
+server.PostListen("/login", (req, res) => {
+    res.SendBuffer(new byte[] { 1 });
+});
 
 // Also Register Put
 // server.PutListen...
