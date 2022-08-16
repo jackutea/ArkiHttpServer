@@ -30,18 +30,27 @@ namespace JackFrame.HttpNS {
             this.cancellationTokenSource = new CancellationTokenSource();
             this.task = new Task(async () => {
 
-                while (!cancellationTokenSource.IsCancellationRequested) {
+                try {
 
-                    var ctx = await listener.GetContextAsync();
-                    var req = ctx.Request;
-                    var res = ctx.Response;
-                    string uri = req.RawUrl!;
-                    Trigger(req.HttpMethod, uri, req, res);
-                    await Task.Delay(10);
+                    while (!cancellationTokenSource.IsCancellationRequested) {
+
+                        var ctx = await listener.GetContextAsync();
+                        var req = ctx.Request;
+                        var res = ctx.Response;
+                        string uri = req.RawUrl!;
+                        Trigger(req.HttpMethod, uri, req, res);
+
+                    }
+
+                } catch {
+
+                    throw;
+
+                } finally {
+
+                    listener.Stop();
 
                 }
-
-                listener.Stop();
 
             });
 
