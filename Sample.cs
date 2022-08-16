@@ -1,4 +1,5 @@
-﻿using JackFrame.HttpNS;
+﻿using System;
+using JackFrame.HttpNS;
 
 namespace JackFrame.SampleAPP {
 
@@ -32,7 +33,7 @@ namespace JackFrame.SampleAPP {
             Console.WriteLine($"Listening:{PORT}");
 
             // Exit
-            while (!Console.ReadLine()!.StartsWith("exit")) {
+            while (!Console.ReadLine().StartsWith("exit")) {
 
             }
 

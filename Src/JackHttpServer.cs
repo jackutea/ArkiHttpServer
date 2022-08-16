@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace JackFrame.HttpNS {
 
@@ -37,7 +41,7 @@ namespace JackFrame.HttpNS {
                         var ctx = await listener.GetContextAsync();
                         var req = ctx.Request;
                         var res = ctx.Response;
-                        string uri = req.RawUrl!;
+                        string uri = req.RawUrl;
                         Trigger(req.HttpMethod, uri, req, res);
 
                     }
