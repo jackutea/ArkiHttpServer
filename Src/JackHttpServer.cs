@@ -42,7 +42,7 @@ namespace JackFrame.HttpNS {
                         var req = ctx.Request;
                         var res = ctx.Response;
                         string uri = req.RawUrl;
-                        Trigger(req.HttpMethod, uri, req, res);
+                        Trigger(req.HttpMethod, uri.Split('?')[0], req, res);
 
                     }
 

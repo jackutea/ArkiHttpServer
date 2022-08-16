@@ -17,6 +17,9 @@ namespace JackFrame.SampleAPP {
             });
 
             server.PostListen("/add_package", async (req, res) => {
+                byte[] buffer = new byte[1024];
+                var count = await req.InputStream.ReadAsync(buffer, 0, buffer.Length);
+                System.Console.WriteLine(count);
                 await res.SendBuffer(new byte[] { 1 });
             });
 
