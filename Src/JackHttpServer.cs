@@ -24,7 +24,7 @@ namespace JackFrame.HttpNS {
         public JackHttpServer(int port) {
 
             this.listener = new HttpListener();
-            this.listener.Prefixes.Add($"http://127.0.0.1:{port}/");
+            this.listener.Prefixes.Add($"http://0.0.0.0:{port}/");
 
             this.getListenDic = new SortedDictionary<int, OnRequestDelegate>();
             this.postListenDic = new SortedDictionary<int, OnRequestDelegate>();
@@ -48,7 +48,7 @@ namespace JackFrame.HttpNS {
 
                 } catch {
 
-                    throw;
+                    System.Console.WriteLine("JackHttpServer Error");;
 
                 } finally {
 
@@ -80,13 +80,14 @@ namespace JackFrame.HttpNS {
         void Trigger(string method, string uri, HttpListenerRequest req, HttpListenerResponse res) {
 
             SortedDictionary<int, OnRequestDelegate> dic;
-            if (method == "GET") {
+            method = method.ToLower();
+            if (method == "get") {
                 dic = getListenDic;
-            } else if (method == "POST") {
+            } else if (method == "post") {
                 dic = postListenDic;
-            } else if (method == "PUT") {
+            } else if (method == "put") {
                 dic = putListenDic;
-            } else if (method == "DELETE") {
+            } else if (method == "delete") {
                 dic = deleteListenDic;
             } else {
                 throw new Exception($"What's this method: {method}?");
