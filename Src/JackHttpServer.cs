@@ -24,7 +24,7 @@ namespace JackFrame.HttpNS {
         public JackHttpServer(int port) {
 
             this.listener = new HttpListener();
-            this.listener.Prefixes.Add($"http://localhost:{port}/");
+            this.listener.Prefixes.Add($"http://127.0.0.1:{port}/");
 
             this.getListenDic = new SortedDictionary<int, OnRequestDelegate>();
             this.postListenDic = new SortedDictionary<int, OnRequestDelegate>();
