@@ -6,4 +6,4 @@ del %file%
 nuget pack
 nuget spec
 set version=%1%
-nuget push JackHttpServer.%version%.nupkg -Source https://www.nuget.org
+nuget push ./bin/Debug/JackHttpServer.%version%.nupkg -Source https://www.nuget.org
