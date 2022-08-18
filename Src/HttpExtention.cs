@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Text;
@@ -7,7 +8,15 @@ namespace JackFrame.HttpNS {
 
     public static class HttpExtention {
 
-        public static async Task SendUTF8String(this HttpListenerResponse res, string content) {
+        // Request
+        public static async Task<ArraySegment<byte>> ReadBufferAsync(this HttpListenerRequest req, byte[] buffer) {
+            int count = await req.InputStream.ReadAsync(buffer, 0, buffer.Length);
+            ArraySegment<byte> arr = new ArraySegment<byte>(buffer, 0, count);
+            return arr;
+        }
+        
+        // Response
+        public static async Task SendUTF8StringAsync(this HttpListenerResponse res, string content) {
             byte[] buffer = Encoding.UTF8.GetBytes(content);
             res.ContentLength64 = buffer.Length;
             Stream output = res.OutputStream;
@@ -15,7 +24,7 @@ namespace JackFrame.HttpNS {
             output.Close();
         }
 
-        public static async Task SendBuffer(this HttpListenerResponse res, byte[] buffer) {
+        public static async Task SendBufferAsync(this HttpListenerResponse res, byte[] buffer) {
             res.ContentLength64 = buffer.Length;
             Stream output = res.OutputStream;
             await output.WriteAsync(buffer, 0, buffer.Length);

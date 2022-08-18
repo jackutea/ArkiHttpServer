@@ -8,13 +8,13 @@ using JackFrame.HttpNS;
 var server = new JackHttpServer(5010); // port
 
 // Register Get
-server.GetListen("/", (req, res) => {
-    res.SendUTF8String("Hello World!");
+server.GetListen("/", async (req, res) => {
+    await res.SendUTF8StringAsync("Hello World!");
 });
 
 // Also Register Post
-server.PostListen("/login", (req, res) => {
-    res.SendBuffer(new byte[] { 1 });
+server.PostListen("/login", async (req, res) => {
+    await res.SendBufferAsync(new byte[] { 1 });
 });
 
 // Also Register Put
