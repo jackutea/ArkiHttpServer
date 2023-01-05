@@ -2,7 +2,7 @@
 （目前自用的）简易 dotnet / mono Http 服务框架
 
 ## Quick Start
-```
+``` C#
 using JackFrame.HttpNS;
 
 var server = new JackHttpServer(5010); // port
